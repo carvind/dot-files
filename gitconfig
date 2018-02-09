@@ -1,0 +1,28 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+#	name = Arvind Chaudhary
+#	email = arvindc@vmware.com
+[user]
+	name = Arvind Chaudhary
+	email = arvindc@vmware.com
+	signingkey = 14299CFFA6810D5A
+[push]
+	default = simple
+[pull]
+	rebase = true
+[core]
+	editor = /usr/local/bin/vim
+[alias]
+	br = branch
+	st = status
+	dt = difftool
+	df = diff
+	last = log -1 HEAD
+	co = checkout
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[merge]
+	tool = vimdiff
