@@ -11,14 +11,6 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
 " Syntastic plugin
 Plug 'scrooloose/syntastic'
 
@@ -39,6 +31,9 @@ Plug 'scrooloose/nerdtree'
 
 " Go Plugin
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+
+" Gocode auto complete
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
 " Latex plugin
 Plug 'lervag/vimtex'
@@ -180,15 +175,6 @@ map <F12> ;cn<enter>
 " alignment command
 map B mzgqap`z
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 " Manual pages
 runtime! ftplugin/man.vim
 
@@ -201,17 +187,4 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 " Enable goimports to automatically insert import paths
 let g:go_fmt_command = "goimports"
-
-" Fix issues with vim-go and syntastic
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck', 'go']
-"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:go_list_type = "quickfix"
-
-let g:deoplete#enable_at_startup = 1
-let g:deocomplete#enable_smart_case = 1
-let g:deocomplete#sources#syntax#min_keyword_length = 3
-if !exists('g:deocomplete#sources')
-  let g:deocomplete#sources = {}
-endif
-let g:deocomplete#sources._ = ['buffer', 'member', 'tag', 'file', 'dictionary']
-let g:deocomplete#sources.go = ['omni']

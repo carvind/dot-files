@@ -22,7 +22,7 @@ if [ -d "/usr/local/opt/python/libexec/bin" ] ; then
   export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 fi
 
-export PATH="$HOME/bin:$GOROOT/bin:$GOPATH/bin:/usr/local/sbin:$PATH"
+export PATH="$HOME/bin:$GOROOT/bin:$GOPATH/bin:/usr/local/sbin:/usr/local/Cellar/ruby/2.5.0/bin:$PATH"
 
 test -e "$(which vim)" && alias vi=$(which vim)
 
@@ -34,11 +34,11 @@ export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Kubectl bash completion support
-source <(kubectl completion bash)
+test -e "$(which kubectl)" && source <(kubectl completion bash)
 # minikube bash completion support
-source <(minikube completion bash)
+test -e "$(which minikube)" && source <(minikube completion bash)
 # helm bash completion support
-source <(helm completion bash)
+test -e "$(which helm)" && source <(helm completion bash)
 
 # pip completion support
 eval "`pip completion --bash`"
@@ -46,8 +46,15 @@ export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="/usr/local/opt/net-snmp/bin:$PATH"
 export PATH="/usr/local/opt/net-snmp/sbin:$PATH"
 
+
+test -e "$(which direnv)" && eval "$(direnv hook bash)"
+export PATH="/Users/arvindc/work/go/src/gitlab.eng.vmware.com/PKS/vane/bin:$PATH"
+export DBCHOST=pa-dbc1116
+export DBCUSER=arvindc
+
+
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/arvindc/google-cloud-sdk/path.bash.inc' ]; then source '/Users/arvindc/google-cloud-sdk/path.bash.inc'; fi
+if [ -f '/Users/arvindc/bin/google-cloud-sdk/path.bash.inc' ]; then source '/Users/arvindc/bin/google-cloud-sdk/path.bash.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/arvindc/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/arvindc/google-cloud-sdk/completion.bash.inc'; fi
+if [ -f '/Users/arvindc/bin/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/arvindc/bin/google-cloud-sdk/completion.bash.inc'; fi
